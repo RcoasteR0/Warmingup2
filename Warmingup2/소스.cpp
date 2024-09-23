@@ -7,7 +7,7 @@
 #include <math.h>
 #include <Windows.h>
 
-#define Quiz4
+#define Quiz5
 
 using namespace std;
 
@@ -151,5 +151,50 @@ int main()
 	}
 
 #endif // Quiz4
+
+#ifdef Quiz5
+	int left, top, right, bottom;
+	char command = '\0';
+
+	while (true)
+	{
+		cout << "좌표 입력: ";
+		cin >> left >> top >> right >> bottom;
+		if (!cin || left < 0 || top < 0 || right >= 30 || bottom >= 30)
+		{
+			cout << "유효하지 않은 좌표입니다." << endl;
+			cin.clear();
+			cin.ignore(INT_MAX, '\n');
+		}
+		else
+			break;
+	}
+
+	while (command != 'q')
+	{
+		for (int i = 0; i < 30; ++i)
+		{
+			for (int j = 0; j < 30; ++j)
+			{
+				if (j >= left && i >= top && j <= right && i <= bottom
+					|| left > right && (j >= left || j <= right)
+					|| top > bottom && (i >= top || i <= bottom))
+					cout << "O ";
+				else
+					cout << ". ";
+			}
+			cout << endl;
+		}
+
+		cout << "명령어 입력: ";
+		cin >> command;
+
+		switch (command)
+		{
+		default:
+			break;
+		}
+	}
+#endif // Quiz5
 
 }
