@@ -336,7 +336,6 @@ int main()
 				else
 					break;
 			}
-			extent = (right - left + 1) * (bottom - top + 1);
 			second = false;
 			break;
 		case 'R':
@@ -414,6 +413,8 @@ int main()
 		default:
 			break;
 		}
+
+		extent = (right - left + 1) * (bottom - top + 1);
 		cout << endl;
 	}
 #endif // Quiz5
