@@ -154,13 +154,14 @@ int main()
 
 #ifdef Quiz5
 	int left, top, right, bottom;
+	int extent;
 	char command = '\0';
 
 	while (true)
 	{
 		cout << "좌표 입력: ";
 		cin >> left >> top >> right >> bottom;
-		if (!cin || left < 0 || top < 0 || right >= 30 || bottom >= 30)
+		if (!cin || left < 0 || top < 0 || right >= 30 || bottom >= 30 || left > right || top > bottom)
 		{
 			cout << "유효하지 않은 좌표입니다." << endl;
 			cin.clear();
@@ -169,6 +170,7 @@ int main()
 		else
 			break;
 	}
+	extent = (right - left + 1) * (bottom - top + 1);
 
 	while (command != 'q')
 	{
@@ -176,9 +178,7 @@ int main()
 		{
 			for (int j = 0; j < 30; ++j)
 			{
-				if (j >= left && i >= top && j <= right && i <= bottom
-					|| left > right && (j >= left || j <= right)
-					|| top > bottom && (i >= top || i <= bottom))
+				if (j >= left && i >= top && j <= right && i <= bottom)
 					cout << "O ";
 				else
 					cout << ". ";
@@ -191,9 +191,129 @@ int main()
 
 		switch (command)
 		{
+		case 'x':
+			if (right < 29)
+			{
+				++left;
+				++right;
+			}
+			break;
+		case 'X':
+			if (left > 0)
+			{
+				--left;
+				--right;
+			}
+		case 'y':
+			if (bottom < 29)
+			{
+				++top;
+				++bottom;
+			}
+			break;
+		case 'Y':
+			if (top > 0)
+			{
+				--top;
+				--bottom;
+			}
+			break;
+		case 's': //x, y 축소
+			if (left + 1 != right)
+				--right;
+			if (top + 1 != bottom)
+				--bottom;
+			break;
+		case 'S': //x, y 확대
+			if (right - left < 29)
+			{
+				if (right == 29)
+					--left;
+				else
+					++right;
+			}
+			if (bottom - top < 29)
+			{
+				if (bottom == 29)
+					--top;
+				else
+					++bottom;
+			}
+			break;
+		case 'i': //x 확대
+			if (right - left < 29)
+			{
+				if (right == 29)
+					--left;
+				else
+					++right;
+			}
+			break;
+		case 'I': //x 축소
+			if (left + 1 != right)
+				--right;
+			break;
+		case 'j': //y 확대
+			if (bottom - top < 29)
+			{
+				if (bottom == 29)
+					--top;
+				else
+					++bottom;
+			}
+			break;
+		case 'J': //y 축소
+			if (top + 1 != bottom)
+				--bottom;
+			break;
+		case 'a': //x 확대, y 축소
+			if (right - left < 29)
+			{
+				if (right == 29)
+					--left;
+				else
+					++right;
+			}
+			if (top + 1 != bottom)
+				--bottom;
+			break;
+		case 'A': //x 축소, y 확대
+			if (left + 1 != right)
+				--right;
+			if (bottom - top < 29)
+			{
+				if (bottom == 29)
+					--top;
+				else
+					++bottom;
+			}
+			break;
+		case 'm':
+			cout << "사각형 크기: " << extent << endl;
+			break;
+		case 'n':
+			cout << "사각형 크기의 비율: " << (float)extent / (30 * 30) * 100 << "%" << endl;
+			break;
+		case 'r':
+			while (true)
+			{
+				cout << "좌표 입력: ";
+				cin >> left >> top >> right >> bottom;
+				if (!cin || left < 0 || top < 0 || right >= 30 || bottom >= 30 || left > right || top > bottom)
+				{
+					cout << "유효하지 않은 좌표입니다." << endl;
+					cin.clear();
+					cin.ignore(INT_MAX, '\n');
+				}
+				else
+					break;
+			}
+			extent = (right - left + 1) * (bottom - top + 1);
+			break;
 		default:
 			break;
 		}
+		cout << endl;
 	}
 #endif // Quiz5
 
