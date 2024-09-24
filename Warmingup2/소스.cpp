@@ -7,7 +7,7 @@
 #include <math.h>
 #include <Windows.h>
 
-#define Quiz5
+#define Quiz6
 
 using namespace std;
 
@@ -97,6 +97,24 @@ int main()
 					--i;
 			}
 		}
+		else if (x1 == 's' && y1 == 'e' && x2 == 'e' && y2 == '@')
+		{
+			cout << "  a b c d e " << endl;
+			for (int i = 0; i < 5; ++i)
+			{
+				cout << i + 1 << " ";
+
+				for (int j = 0; j < 5; ++j)
+				{
+					if (card[i][j].type != '@')
+						SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), int(card[i][j].type - 'A' + 1));
+					cout << card[i][j].type << " ";
+					SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+				}
+
+				cout << endl;
+			}
+		}
 		else if (x1 >= 'a' && x1 <= 'e' && y1 >= '1' && y1 <= '5'
 			&& x2 >= 'a' && x2 <= 'e' && y2 >= '1' && y2 <= '5')
 		{
@@ -123,7 +141,6 @@ int main()
 						if (card[0][i].type == card[col2][row2].type)
 						{
 							card[0][i].exclude = true;
-							break;
 						}
 					}
 				}
@@ -134,7 +151,6 @@ int main()
 						if (card[0][i].type == card[col1][row1].type)
 						{
 							card[0][i].exclude = true;
-							break;
 						}
 					}
 				}
