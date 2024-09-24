@@ -435,4 +435,7 @@ int main()
 	}
 #endif // Quiz5
 
+#ifdef Quiz6
+
+#endif // Quiz6
 }
