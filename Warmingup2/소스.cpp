@@ -294,28 +294,28 @@ int main()
 			if (top + 1 != bottom)
 				--bottom;
 			break;
-		case 'a': //x 확대, y 축소
-			if (right - left < 29)
-			{
-				if (right == 29)
-					--left;
-				else
-					++right;
-			}
-			if (top + 1 != bottom)
-				--bottom;
-			break;
-		case 'A': //x 축소, y 확대
-			if (left + 1 != right)
-				--right;
-			if (bottom - top < 29)
-			{
-				if (bottom == 29)
-					--top;
-				else
-					++bottom;
-			}
-			break;
+		//case 'a': //x 확대, y 축소
+		//	if (right - left < 29)
+		//	{
+		//		if (right == 29)
+		//			--left;
+		//		else
+		//			++right;
+		//	}
+		//	if (top + 1 != bottom)
+		//		--bottom;
+		//	break;
+		//case 'A': //x 축소, y 확대
+		//	if (left + 1 != right)
+		//		--right;
+		//	if (bottom - top < 29)
+		//	{
+		//		if (bottom == 29)
+		//			--top;
+		//		else
+		//			++bottom;
+		//	}
+		//	break;
 		case 'm':
 			cout << "사각형 크기: " << extent << endl;
 			break;
@@ -354,6 +354,56 @@ int main()
 					break;
 			}
 			second = true;
+			break;
+		case 'w': //2번 x 우측 이동
+			if (right2 < 29)
+			{
+				++left2;
+				++right2;
+			}
+			break;
+		case 'W': //2번 x 좌측 이동
+			if (left2 > 0)
+			{
+				--left2;
+				--right2;
+			}
+			break;
+		case 'a': //2번 y 아래 이동
+			if (bottom2 < 29)
+			{
+				++top2;
+				++bottom2;
+			}
+			break;
+		case 'A': //2번 y 위 이동
+			if (top2 > 0)
+			{
+				--top2;
+				--bottom2;
+			}
+			break;
+		case 'd': //2번 축소
+			if (left2 + 1 != right2)
+				--right2;
+			if (top2 + 1 != bottom2)
+				--bottom2;
+			break;
+		case 'D': //2번 확대
+			if (right2 - left2 < 29)
+			{
+				if (right2 == 29)
+					--left2;
+				else
+					++right2;
+			}
+			if (bottom2 - top2 < 29)
+			{
+				if (bottom2 == 29)
+					--top2;
+				else
+					++bottom2;
+			}
 			break;
 		default:
 			break;
