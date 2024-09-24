@@ -154,8 +154,10 @@ int main()
 
 #ifdef Quiz5
 	int left, top, right, bottom;
+	int left2, top2, right2, bottom2;
 	int extent;
 	char command = '\0';
+	bool second = false;
 
 	while (true)
 	{
@@ -174,16 +176,42 @@ int main()
 
 	while (command != 'q')
 	{
-		for (int i = 0; i < 30; ++i)
+		if(second)
 		{
-			for (int j = 0; j < 30; ++j)
+			for (int i = 0; i < 30; ++i)
 			{
-				if (j >= left && i >= top && j <= right && i <= bottom)
-					cout << "O ";
-				else
-					cout << ". ";
+				for (int j = 0; j < 30; ++j)
+				{
+					if (j >= left && i >= top && j <= right && i <= bottom
+						&& j >= left2 && i >= top2 && j <= right2 && i <= bottom2)
+					{
+						SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 4);
+						cout << "# ";
+						SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
+					}
+					else if (j >= left && i >= top && j <= right && i <= bottom)
+						cout << "O ";
+					else if (j >= left2 && i >= top2 && j <= right2 && i <= bottom2)
+						cout << "X ";
+					else
+						cout << ". ";
+				}
+				cout << endl;
 			}
-			cout << endl;
+		}
+		else
+		{
+			for (int i = 0; i < 30; ++i)
+			{
+				for (int j = 0; j < 30; ++j)
+				{
+					if (j >= left && i >= top && j <= right && i <= bottom)
+						cout << "O ";
+					else
+						cout << ". ";
+				}
+				cout << endl;
+			}
 		}
 
 		cout << "명령어 입력: ";
@@ -309,6 +337,23 @@ int main()
 					break;
 			}
 			extent = (right - left + 1) * (bottom - top + 1);
+			second = false;
+			break;
+		case 'R':
+			while (true)
+			{
+				cout << "좌표 입력: ";
+				cin >> left2 >> top2 >> right2 >> bottom2;
+				if (!cin || left2 < 0 || top2 < 0 || right2 >= 30 || bottom2 >= 30 || left2 > right2 || top2 > bottom2)
+				{
+					cout << "유효하지 않은 좌표입니다." << endl;
+					cin.clear();
+					cin.ignore(INT_MAX, '\n');
+				}
+				else
+					break;
+			}
+			second = true;
 			break;
 		default:
 			break;

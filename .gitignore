@@ -31,3 +31,5 @@
 *.out
 *.app
 /.vs
+/Warmingup2/x64
+/x64
